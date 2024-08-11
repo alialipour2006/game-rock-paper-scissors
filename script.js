@@ -11,7 +11,7 @@ const btmResetGame = document.getElementById('btm-reset')
 const btmResetPoint = document.getElementById('btm-reset-point')
 const choices = ["scissors", "paper", "stone"]
 const messages = {
-    finishGame: "بازی تمام شد",
+    finishGame: "زمان بازی تمام شد باختی",
     win: "شما برنده شدید",
     lose: "شما باختید",
     even: "مساوی",
@@ -23,18 +23,21 @@ let timeGame = 15;
 
 
 addEventListener("DOMContentLoaded", () => {
-    timeing()
+    timeing(false)
 });
 
 
 
-btmResetGame.addEventListener("click", () => {
+btmResetGame.addEventListener("click", function (event) {
     choiceUser.innerText = "";
     choiceCom.innerText = "";
     resultGame.innerText = "";
+    if (timeGame <= 0) {
+        timeing(false)
+    }
     timeGame = 15;
-    clearInterval(interval);
-    timeing()
+    timeing(true)
+
 });
 
 
@@ -62,22 +65,27 @@ stoneUser.addEventListener("click", () => {
 
 
 
-function timeing() {
+function timeing(clear) {
     currentTime.innerText = timeGame;
-    var interval = setInterval(() => {
+    let myInterval = setInterval(() => {
         if (timeGame >= 0) {
             currentTime.innerText = timeGame;
             timeGame = timeGame - 1;
         }
         if (timeGame <= -1) {
             resultGame.innerText = messages.finishGame;
+            cmPoint = cmPoint + 1;
+            comPoint.innerText = cmPoint;
             choiceUser.innerText = "";
             choiceCom.innerText = "";
-            clearInterval(interval);
+            clearInterval(myInterval);
         }
     }, 1000)
-}
+    if (clear) {
+        clearInterval(myInterval);
+    }
 
+}
 
 
 
