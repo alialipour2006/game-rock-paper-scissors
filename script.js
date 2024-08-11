@@ -21,6 +21,8 @@ let myPoint = 0;
 let cmPoint = 0;
 let timeGame = 15;
 
+var winA = new Audio('win.mp3');
+var loseA = new Audio('lose.mp3');
 
 addEventListener("DOMContentLoaded", () => {
     timeing(false)
@@ -137,15 +139,18 @@ function result(userChoice, resultCom) {
 }
 
 
-
 function showResult(textRs) {
     if (textRs == "win") {
         resultGame.innerText = messages.win;
         resultGame.classList.add("win");
+        loseA.pause();
+        winA.play();
         myPoint = myPoint + 1;
         clinPoint.innerText = myPoint;
     } else if (textRs == "lose") {
         resultGame.innerText = messages.lose;
+        winA.pause();
+        loseA.play();
         resultGame.classList.add("lose");
         cmPoint = cmPoint + 1;
         comPoint.innerText = cmPoint;
