@@ -76,6 +76,8 @@ function timeing(clear) {
         }
         if (timeGame <= -1) {
             resultGame.innerText = messages.finishGame;
+            resultGame.classList.add("lose");
+            loseA.play();
             cmPoint = cmPoint + 1;
             comPoint.innerText = cmPoint;
             choiceUser.innerText = "";
@@ -98,8 +100,8 @@ function playGame(choice, emoji) {
         timeGame = 15;
     } else {
         resultGame.innerText = messages.finishGame;
+        resultGame.classList.add("lose");
     }
-
 }
 
 

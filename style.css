@@ -146,3 +146,15 @@ html {
     background-color: #496195;
     transition: all 0.2s;
 }
+
+.even {
+    color: #eca93a;
+}
+
+.win {
+    color: #22bb33;
+}
+
+.lose {
+    color: #bb2124;
+}
