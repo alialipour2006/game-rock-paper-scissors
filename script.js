@@ -26,17 +26,21 @@ let timeGame = 15;
 var winA = new Audio('win.mp3');
 var loseA = new Audio('lose.mp3');
 
+
 addEventListener("DOMContentLoaded", () => {
     timeing(false)
 });
 
 
 
+// Game reset button
 btmResetGame.addEventListener("click", function (event) {
     choiceUser.innerText = "";
     choiceCom.innerText = "";
     resultGame.innerText = "";
     resultGame.classList = "";
+    winUser.classList.remove('winer-border');
+    winComp.classList.remove('winer-border')
     if (timeGame <= 0) {
         timeing(false)
     }
@@ -46,6 +50,7 @@ btmResetGame.addEventListener("click", function (event) {
 
 
 
+// Points reset button
 btmResetPoint.addEventListener("click", () => {
     comPoint.innerText = "0";
     clinPoint.innerText = "0";
@@ -54,7 +59,7 @@ btmResetPoint.addEventListener("click", () => {
 })
 
 
-
+// Rock Paper Scissors button click part
 scissorsUser.addEventListener("click", () => {
     playGame("scissors", "✌️");
 })
@@ -67,7 +72,7 @@ stoneUser.addEventListener("click", () => {
 })
 
 
-
+// The timing part of the game
 function timeing(clear) {
     currentTime.innerText = timeGame;
     let myInterval = setInterval(() => {
@@ -98,7 +103,7 @@ function timeing(clear) {
 }
 
 
-
+// Game start function
 function playGame(choice, emoji) {
     if (timeGame > 0) {
         game(choice);
@@ -112,7 +117,7 @@ function playGame(choice, emoji) {
 }
 
 
-
+// Game function
 function game(userChoice) {
     let resultCom = choices[Math.floor(Math.random() * choices.length)];
     switch (resultCom) {
@@ -133,6 +138,7 @@ function game(userChoice) {
 
 
 
+// The part of calculating the result of the game
 function result(userChoice, resultCom) {
     if (userChoice === resultCom) {
         winUser.classList.remove('winer-border');
@@ -154,6 +160,8 @@ function result(userChoice, resultCom) {
 }
 
 
+
+// Show the result of the game
 function showResult(textRs) {
     if (textRs == "win") {
         resultGame.innerText = messages.win;
