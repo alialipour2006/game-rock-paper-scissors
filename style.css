@@ -1,0 +1,131 @@
+body,
+html {
+    width: 100%;
+    height: 100%;
+    background-color: #1d201b;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: "IranSans";
+}
+
+.game {
+    background-color: #323431;
+    width: 30%;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 7px;
+
+}
+
+@media screen and (max-width: 800px) {
+    .game {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+.name-header {
+    color: #eca93a;
+    text-align: center;
+    padding: 20px 0 5px 0;
+    font-size: 32pt;
+}
+
+.score-game {
+    display: flex;
+    justify-content: space-around;
+}
+
+.num-comp-text {
+    border-radius: 8px;
+    background-color: #424542;
+    color: #f6f9f5;
+    padding: 6px 10px;
+    font-size: 17pt;
+}
+
+.num-clin-text {
+    border-radius: 8px;
+    background-color: #424542;
+    color: #f6f9f5;
+    padding: 6px 10px;
+    font-size: 17pt;
+}
+
+.num-comp {}
+
+.num-clin {}
+
+.time-box {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.current-time {
+    border-radius: 8px;
+    background-color: #424542;
+    color: #f6f9f5;
+    padding: 6px 10px;
+    font-size: 21pt;
+    vertical-align: middle;
+}
+
+.current-time-num {}
+
+.icons-game {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.style-icon {
+    padding: 6px 10px;
+    font-size: 36pt;
+    display: block;
+    user-select: none;
+
+}
+
+.style-icon-button {
+    border-radius: 8px;
+    background-color: #424542;
+    padding: 6px 12px;
+    font-size: 28pt;
+    margin: 2px 14px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.style-icon-button:hover {
+    background-color: #5c5446;
+    transition: all 0.3s;
+}
+
+.game-flow {
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.result-game {
+    color: #e6e9e5;
+}
+
+.btm-reset-game {
+    background-color: #da4a29;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 14pt;
+    margin: 12px;
+    vertical-align: middle;
+    cursor: pointer;
+    border: none;
+    color: #fee1d6;
+    transition: all 0.2s;
+}
+
+.btm-reset-game:hover {
+    background-color: #8e3b29;
+    transition: all 0.2s;
+}
