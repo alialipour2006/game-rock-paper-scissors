@@ -8,6 +8,7 @@ const choiceUser = document.getElementById('choice-user')
 const choiceCom = document.getElementById('choice-com')
 const resultGame = document.getElementById('result-game')
 const btmResetGame = document.getElementById('btm-reset')
+const btmResetPoint = document.getElementById('btm-reset-point')
 const choices = ["scissors", "paper", "stone"]
 const messages = {
     finishGame: "بازی تمام شد",
@@ -26,16 +27,24 @@ addEventListener("DOMContentLoaded", () => {
 });
 
 
+
 btmResetGame.addEventListener("click", () => {
     choiceUser.innerText = "";
     choiceCom.innerText = "";
-
     resultGame.innerText = "";
-
     timeGame = 15;
-
+    clearInterval(interval);
+    timeing()
 });
 
+
+
+btmResetPoint.addEventListener("click", () => {
+    comPoint.innerText = "0";
+    clinPoint.innerText = "0";
+    myPoint = 0;
+    cmPoint = 0;
+})
 
 
 
@@ -48,24 +57,27 @@ paperUser.addEventListener("click", () => {
 })
 stoneUser.addEventListener("click", () => {
     playGame("stone", "✊");
+
 })
 
 
 
 function timeing() {
     currentTime.innerText = timeGame;
-    setInterval(() => {
+    var interval = setInterval(() => {
         if (timeGame >= 0) {
             currentTime.innerText = timeGame;
             timeGame = timeGame - 1;
         }
-        if (timeGame <= 0) {
+        if (timeGame <= -1) {
             resultGame.innerText = messages.finishGame;
             choiceUser.innerText = "";
             choiceCom.innerText = "";
+            clearInterval(interval);
         }
     }, 1000)
 }
+
 
 
 
@@ -76,10 +88,10 @@ function playGame(choice, emoji) {
         timeGame = 15;
     } else {
         resultGame.innerText = messages.finishGame;
-
     }
 
 }
+
 
 
 function game(userChoice) {
