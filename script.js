@@ -9,6 +9,8 @@ const choiceCom = document.getElementById('choice-com')
 const resultGame = document.getElementById('result-game')
 const btmResetGame = document.getElementById('btm-reset')
 const btmResetPoint = document.getElementById('btm-reset-point')
+const winComp = document.getElementById('win-comp')
+const winUser = document.getElementById('win-user')
 const choices = ["scissors", "paper", "stone"]
 const messages = {
     finishGame: "زمان بازی تمام شد باختی",
@@ -34,12 +36,12 @@ btmResetGame.addEventListener("click", function (event) {
     choiceUser.innerText = "";
     choiceCom.innerText = "";
     resultGame.innerText = "";
+    resultGame.classList = "";
     if (timeGame <= 0) {
         timeing(false)
     }
     timeGame = 15;
     timeing(true)
-
 });
 
 
@@ -55,7 +57,6 @@ btmResetPoint.addEventListener("click", () => {
 
 scissorsUser.addEventListener("click", () => {
     playGame("scissors", "✌️");
-    console.log(playGame);
 })
 paperUser.addEventListener("click", () => {
     playGame("paper", "✋");
@@ -83,6 +84,11 @@ function timeing(clear) {
             choiceUser.innerText = "";
             choiceCom.innerText = "";
             clearInterval(myInterval);
+            scissorsUser.classList.add("hide");
+            paperUser.classList.add("hide");
+            stoneUser.classList.add("hide");
+            winUser.classList.remove('winer-border');
+            winComp.classList.remove('winer-border')
         }
     }, 1000)
     if (clear) {
@@ -97,6 +103,7 @@ function playGame(choice, emoji) {
     if (timeGame > 0) {
         game(choice);
         choiceUser.innerText = emoji;
+        console.log(choiceUser)
         timeGame = 15;
     } else {
         resultGame.innerText = messages.finishGame;
@@ -128,14 +135,20 @@ function game(userChoice) {
 
 function result(userChoice, resultCom) {
     if (userChoice === resultCom) {
+        winUser.classList.remove('winer-border');
+        winComp.classList.remove('winer-border');
         showResult("even")
     } else if (
         (userChoice === "stone" && resultCom === "scissors") ||
         (userChoice === "paper" && resultCom === "stone") ||
         (userChoice === "scissors" && resultCom === "paper")
     ) {
+        winComp.classList.remove('winer-border');
+        winUser.classList.add('winer-border')
         showResult("win")
     } else {
+        winUser.classList.remove('winer-border');
+        winComp.classList.add('winer-border')
         showResult("lose")
     }
 }
@@ -144,6 +157,8 @@ function result(userChoice, resultCom) {
 function showResult(textRs) {
     if (textRs == "win") {
         resultGame.innerText = messages.win;
+        resultGame.classList.remove("lose");
+        resultGame.classList.remove("even");
         resultGame.classList.add("win");
         loseA.pause();
         winA.play();
@@ -153,11 +168,15 @@ function showResult(textRs) {
         resultGame.innerText = messages.lose;
         winA.pause();
         loseA.play();
+        resultGame.classList.remove("win");
+        resultGame.classList.remove("even");
         resultGame.classList.add("lose");
         cmPoint = cmPoint + 1;
         comPoint.innerText = cmPoint;
     } else if (textRs == "even") {
         resultGame.innerText = messages.even;
+        resultGame.classList.remove("lose");
+        resultGame.classList.remove("win");
         resultGame.classList.add("even");
     }
 }

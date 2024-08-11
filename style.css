@@ -1,3 +1,13 @@
+@font-face {
+    font-family: vazir;
+    src: url(fonts/Vazir-Regular.woff) format("woff");
+}
+
+* {
+    font-family: "vazir";
+
+}
+
 body,
 html {
     width: 100%;
@@ -6,7 +16,7 @@ html {
     padding: 0;
     margin: 0;
     overflow: hidden;
-    font-family: "IranSans";
+    font-family: "vazir";
 }
 
 .game {
@@ -86,12 +96,20 @@ html {
     margin: 0 5px;
 }
 
+.style-icon-person {
+    font-size: 36pt;
+    user-select: none;
+    color: #e6e9e5;
+    position: fixed;
+    margin: 0 5px;
+}
+
 .style-icon-button {
     border-radius: 8px;
     background-color: #424542;
     padding: 6px 12px;
     font-size: 28pt;
-    margin: 2px 10px;
+    margin: 10px;
     vertical-align: middle;
     cursor: pointer;
     transition: all 0.3s;
@@ -149,12 +167,37 @@ html {
 
 .even {
     color: #eca93a;
+    border: 1px solid #eca93a;
+    border-radius: 10px;
+    padding: 5px 10px;
 }
 
 .win {
     color: #22bb33;
+    border: 1px solid #22bb33;
+    border-radius: 10px;
+    padding: 5px 10px;
 }
 
 .lose {
-    color: #bb2124;
+    color: #f22d30;
+    border: 1px solid #bb2124;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.hide {
+    display: none;
+    pointer-events: none;
+}
+
+.winer-border {
+    border: 1px solid #fff;
+
+}
+
+.section-result {
+    border: 1px solid #888;
+    border-radius: 10px;
+    padding: 10px;
 }
