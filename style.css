@@ -191,6 +191,11 @@ html {
     pointer-events: none;
 }
 
+.show {
+    display: block;
+    pointer-events: unset;
+}
+
 .winer-border {
     border: 1px solid #fff;
 

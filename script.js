@@ -17,7 +17,7 @@ const messages = {
     win: "شما برنده شدید",
     lose: "شما باختید",
     even: "مساوی",
-}
+}   
 
 let myPoint = 0;
 let cmPoint = 0;
@@ -32,31 +32,13 @@ addEventListener("DOMContentLoaded", () => {
 });
 
 
-
 // Game reset button
-btmResetGame.addEventListener("click", function (event) {
-    choiceUser.innerText = "";
-    choiceCom.innerText = "";
-    resultGame.innerText = "";
-    resultGame.classList = "";
-    winUser.classList.remove('winer-border');
-    winComp.classList.remove('winer-border')
-    if (timeGame <= 0) {
-        timeing(false)
-    }
-    timeGame = 15;
-    timeing(true)
-});
+btmResetGame.addEventListener("click",()=> resetGame());
 
 
 
 // Points reset button
-btmResetPoint.addEventListener("click", () => {
-    comPoint.innerText = "0";
-    clinPoint.innerText = "0";
-    myPoint = 0;
-    cmPoint = 0;
-})
+btmResetPoint.addEventListener("click",()=> resetPoint())
 
 
 // Rock Paper Scissors button click part
@@ -72,6 +54,43 @@ stoneUser.addEventListener("click", () => {
 })
 
 
+// Points reset  function
+function resetPoint(){
+    comPoint.innerText = "0";
+    clinPoint.innerText = "0";
+    myPoint = 0;
+    cmPoint = 0;
+    resetGame()
+}
+
+
+
+
+// Game reset  function
+function resetGame() {
+    choiceUser.innerText = "";
+    choiceCom.innerText = "";
+    resultGame.innerText = "";
+    resultGame.classList = "";
+    winUser.classList.remove('winer-border');
+    winComp.classList.remove('winer-border')
+    if (timeGame <= 0) {
+        timeing(false)
+    }
+    
+    timeGame = 15;
+    timeing(true)
+    scissorsUser.classList.remove("hide");
+    paperUser.classList.remove("hide");
+    stoneUser.classList.remove("hide");
+    scissorsUser.classList.add("show");
+    paperUser.classList.add("show");
+    stoneUser.classList.add("show");
+}
+
+
+
+
 // The timing part of the game
 function timeing(clear) {
     currentTime.innerText = timeGame;
@@ -83,12 +102,17 @@ function timeing(clear) {
         if (timeGame <= -1) {
             resultGame.innerText = messages.finishGame;
             resultGame.classList.add("lose");
+            winA.pause();
+            loseA.currentTime = 0;
             loseA.play();
             cmPoint = cmPoint + 1;
             comPoint.innerText = cmPoint;
             choiceUser.innerText = "";
             choiceCom.innerText = "";
             clearInterval(myInterval);
+            scissorsUser.classList.remove("show");
+            paperUser.classList.remove("show");
+            stoneUser.classList.remove("show");
             scissorsUser.classList.add("hide");
             paperUser.classList.add("hide");
             stoneUser.classList.add("hide");
@@ -169,12 +193,14 @@ function showResult(textRs) {
         resultGame.classList.remove("even");
         resultGame.classList.add("win");
         loseA.pause();
+        winA.currentTime = 0;
         winA.play();
         myPoint = myPoint + 1;
         clinPoint.innerText = myPoint;
     } else if (textRs == "lose") {
         resultGame.innerText = messages.lose;
         winA.pause();
+        loseA.currentTime = 0;
         loseA.play();
         resultGame.classList.remove("win");
         resultGame.classList.remove("even");
